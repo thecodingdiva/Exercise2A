@@ -40,7 +40,7 @@ namespace Lab2
             foreach (var input in numbersInput)
             {
                 Console.WriteLine("\t" + input);
-            }
+                numbersInput.Add(input.Sum(input));
         }
     }
 }
