@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
 
 namespace Lab2
 {
@@ -11,36 +12,48 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            List<string> numbersInput = new List<string>();
-
-            Console.WriteLine("Please enter 10 numbers between 1 and 100 ");
-            string input = Console.ReadLine();
-
-            while (!string.IsNullOrEmpty(input))
+            Console.WriteLine("Please enter the grades. (Please separate by a comma)");
+            var foo = Console.ReadLine();
+            var tokens = foo.Split(',');
+            List<int> nums = new List<int>();
+            int oneNum;
+            foreach (var s in tokens)
             {
-                numbersInput.Add(input);
-                Console.WriteLine("Please enter another integer: ");
-                input = Console.ReadLine();
+                if (Int32.TryParse(s, out oneNum))
+                    nums.Add(oneNum);
             }
 
-            if (numbersInput.Count > 0)
+            int sum = nums.Sum();
+            Console.WriteLine("The sum of the " + tokens.Length + " grades entered is: " + sum);
+
+            char grade;
+            double avg = sum / tokens.Length;
+
+            if (avg >= 90)
             {
-                Console.WriteLine("You have entered " + numbersInput.Count + " numbers, they were: ");
-                NewMethod(numbersInput);
+                grade = 'A';
+            }
+            else if (avg > 80)
+            {
+                grade = 'B';
+            }
+            else if (avg > 70)
+            {
+                grade = 'C';
+            }
+            else if (avg > 60)
+            {
+                grade = 'D';
             }
             else
             {
-                Console.WriteLine("You have entered 0 numbers.");  
+                grade = 'F';
             }
 
+            Console.WriteLine("The average of the grades is: " + avg);
+            Console.WriteLine("The letter grade is: " + grade);
         }
 
-        private static void NewMethod(List<string> numbersInput)
-        {
-            foreach (var input in numbersInput)
-            {
-                Console.WriteLine("\t" + input);
-                numbersInput.Add(input.Sum(input));
-        }
+
     }
 }
