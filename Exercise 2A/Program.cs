@@ -13,6 +13,10 @@ namespace Lab2
 {
     class Program
     {
+        public Program()
+        {
+        }
+
         static void Main(string[] args)
         {
 
@@ -66,26 +70,29 @@ namespace Lab2
 
             //INTERMEDIATE
 
-            int i = 0;
-            int[] array = new int[i];
+
+            
 
             Console.WriteLine("How many tests do you have?");
-            int end = int.Parse(Console.ReadLine());
+            int d = int.Parse(Console.ReadLine());
+            
+            int[] array = new int[d];
 
             do
             {
                 Console.Write("Please enter a number to add to the array or \"x\" to stop: ");
                 string consoleInput = Console.ReadLine();
                 {
-                    array[i] = Convert.ToInt32(Console.ReadLine());
+                    array[d] = Convert.ToInt32(Console.ReadLine());
 
                 }
-                while (array.Length < end) ;
+            } while (array.Length < d);
 
 
-                int sum = 0;
 
-                foreach (int d in array)
+            int sum = 0;
+
+                foreach (int i in array)
                 {
                     sum += d;
                 }
@@ -117,6 +124,8 @@ namespace Lab2
                 {
                     grade = 'F';
                 }
+
+                
 
                 Console.WriteLine("The average of the grades is: " + avg);
                 Console.WriteLine("The letter grade is: " + grade);
@@ -167,8 +176,6 @@ namespace Lab2
                 //}
 
             }
-        
+        }
+    }
 
-    }
-    }
-}
